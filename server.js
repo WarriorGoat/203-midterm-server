@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5002;
 
 const { mongooseConnect } = require("./mongoose.js");
 mongooseConnect();
-// const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 
 //register routes.
@@ -40,7 +40,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Register routes
-// app.use(cors());
+app.use(cors());
+app.options("*", cors());
 // app.use(express.json());
 app.use('/', indexRouter);
 app.use('/blogs', blogRoutes); 

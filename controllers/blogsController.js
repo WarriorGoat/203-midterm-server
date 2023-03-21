@@ -8,9 +8,11 @@ async function getAllBlogs(req, res) {
     //query blogs 
     try {
       const allBlogs = await Blog.find({});
-      res.json({blogs: allBlogs });
+      res.json({
+        success: true,
+        blogs: allBlogs });
     }catch(e){
-      console.log(e);
+      console.log(`Error Point 1` + e);
     }
 }
 
@@ -25,7 +27,6 @@ async function createOneBlog(req, res, next) {
       const year =  req.body.year;
   
       //pass fields to new Blog model 
-      //notice how it's way more organized and does the type checking for us
       const newBlog = new Blog({
           title,
           text,
